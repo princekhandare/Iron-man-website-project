@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Intro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            padding: 20px 40px;
+            font-size: 24px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px red;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click Here to See Web Page with Special Intro</h1>
+    
+    <button class="btn" onclick="startIntro()">Click Me</button>
+
+    <script>
+        function startIntro() {
+            
+            window.location.href = 'videoedit.html';
+        }
+    </script>
+</body>
+</html>

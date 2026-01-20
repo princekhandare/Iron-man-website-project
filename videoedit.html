@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Intro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #bgVideo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        } 
+        #unmuteBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            padding: 15px 25px;
+            font-size: 16px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        #unmuteBtn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        .sound-on {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 10;
+            padding: 10px 20px;
+            background: rgba(0,255,0,0.9);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- 🔥 FIXED: REMOVED 'loop' attribute 🔥 -->
+        <video id="bgVideo" autoplay muted playsinline>
+            <source src="video1.mp4" type="video/mp4"> 
+        </video>
+        
+        <button id="unmuteBtn">🔊 Enable Sound</button>
+        <button id="soundToggle" class="sound-on">🔇 Sound On</button>
+        
+    </div>
+
+    <script>
+        const video = document.getElementById('bgVideo');
+        const unmuteBtn = document.getElementById('unmuteBtn');
+        const soundToggle = document.getElementById('soundToggle');
+
+        unmuteBtn.addEventListener('click', () => {
+            video.muted = false;
+            unmuteBtn.style.display = 'none';
+            soundToggle.style.display = 'block';
+            video.play().catch(e => console.log('Autoplay prevented'));
+        });
+
+        soundToggle.addEventListener('click', () => {
+            video.muted = true;
+            soundToggle.style.display = 'none';
+            unmuteBtn.style.display = 'block';
+        });
+
+        // ✅ GO TO index.html WHEN VIDEO COMPLETELY ENDS
+        video.addEventListener('ended', function() {
+            window.location.href = 'website.html';
+        });
+
+        // ✅ SKIP BY CLICKING/TAPPING ANYWHERE
+        document.querySelector('.video-container').addEventListener('click', function(e) {
+            if (e.target === this) {
+                window.location.href = 'website.html';
+            }
+        });
+
+        // ✅ SAFETY TIMEOUT (15 seconds)
+        setTimeout(() => {
+            window.location.href ='website.html';
+        }, 15000);
+    </script>
+</body>
+</html>
